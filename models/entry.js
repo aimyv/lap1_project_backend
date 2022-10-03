@@ -37,6 +37,12 @@ class Entry {
     update(key, value){
         if(key === "comments"){
             this.comments.push(value)
+        } else if(key === "e1" && value === "inc"){
+            this.e1++;
+        } else if(key === "e2" && value === "inc"){
+            this.e2++;
+        } else if(key === "e3" && value === "inc"){
+            this.e3++;
         }
     }
 
