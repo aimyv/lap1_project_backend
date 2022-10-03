@@ -42,12 +42,12 @@ router.put('/:id', (req, res) => {
     if(req.body.e1) {
         selectedEntry.update("e1", req.body.e1)
     } 
-    if(req.body.e2) {
-        selectedEntry.update("e2", req.body.e2)
-    } 
-    if(req.body.e3) {
-        selectedEntry.update("e3", req.body.e3)
-    }
+    // if(req.body.e2) {
+    //     selectedEntry.update("e2", req.body.e2)
+    // } 
+    // if(req.body.e3) {
+    //     selectedEntry.update("e3", req.body.e3)
+    // }
     
     // if(req.body.react)
     //     selectedEntry.update("reactions", req.body.react)

@@ -1,4 +1,8 @@
-const data = require('../data');
+const data = require('../data.json');
+const fs = require("fs");
+
+var edata = fs.readFileSync('./data.json');
+var entryData = JSON.parse(edata);
 
 class Entry {
     constructor(data) {
@@ -30,20 +34,40 @@ class Entry {
     static create(entry) {
         const newEntryId = data.length + 1;
         const newEntry = new Entry({ postId: newEntryId, ...entry});
-        data.push(newEntry);
-        return newEntry;
+        entryData.push(newEntry);
+        var newData = JSON.stringify(entryData);
+        fs.writeFile('data.json', newData, err => {
+            if(err) throw err;
+            
+            console.log("New data added");
+        }); 
     }
 
     update(key, value){
         if(key === "comments"){
             this.comments.push(value)
-        } else if(key === "e1" && value === "inc"){
-            this.e1++;
-        } else if(key === "e2" && value === "inc"){
-            this.e2++;
-        } else if(key === "e3" && value === "inc"){
-            this.e3++;
-        }
+        } 
+        if(key === "e1"){
+            this.e1 += value;
+            return this.e1;
+        } 
+        // if(key === "e2" && value === "inc"){
+        //     this.e2++;
+        //     return this.e2;
+        // } 
+        // if(key === "e3" && value === "inc"){
+        //     this.e3++;
+        //     return this.e3;
+        // } 
+        // if(key === "e1" && value === "dec" && this.e1 > 0){
+        //     this.e1--;
+        // } 
+        // if(key === "e2" && value === "dec" && this.e2 > 0){
+        //     this.e2--;
+        // } 
+        // if(key === "e3" && value === "dec" && this.e3 > 0){
+        //     this.e1--;
+        // } 
     }
 
     destroy() {
