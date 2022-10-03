@@ -23,7 +23,7 @@ describe('API server', () => {
     })
 
     test('get post entry by id', (done) => {
-        request(api).get('/entry/2').expect(200).expect({
+        request(api).get('/entries/2').expect(200).expect({
             "postId": 2,
             "author": "Peter",
             "title": "Second Title",

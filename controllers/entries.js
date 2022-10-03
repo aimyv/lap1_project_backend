@@ -36,8 +36,9 @@ router.put('/:id', (req, res) => {
     
     const selectedEntry = Entry.findById(entryId)
 
-    if(req.body.comment)
+    if(req.body.comment) {
         selectedEntry.update("comments", req.body.comment)
+    }
     
     // if(req.body.react)
     //     selectedEntry.update("reactions", req.body.react)
