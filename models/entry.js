@@ -2,15 +2,29 @@ const data = require('../data');
 
 class Entry {
     constructor(data) {
-
+        this.postId = data.postId;
+        this.author = data.author;
+        this.title = data.title;
+        this.content = data.content;
+        this.comments = data.comments;
+        this.gifUrl = data.gifUrl;
+        this.e1 = data.e1;
+        this.e2 = data.e2;
+        this.e3 = data.e3;
     }
 
     static get all() {
-
+        const entries = data.map((entry) => new Entry(entry));
+        return entries;
     }
 
-    static findById(id) {
-        
+    static findById(postId) {
+        const entryData = data.filter((entry) => entry.postId == postId)[0];
+        if (!entryData){
+            return;
+        }
+        const entry = new Entry(entryData);
+        return entry;
     }
 
 }
