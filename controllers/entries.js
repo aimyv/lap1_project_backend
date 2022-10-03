@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
         res.send(selectedEntry);
     } catch (err) {
         console.log(err);
-        res.status(404).send({message: err.message})
+        res.status(404).send({ message: err.message })
     }
 })
 
@@ -30,11 +30,18 @@ router.post('/', (req, res) => {
     res.status(201).send(newEntry);
 })
 
+router.put('/:id', (req, res) => {
+    const data = req.body;
+    const newEntry = Entry.create(data);
+    res.status(201).send(newEntry);
+})
+/*
 router.delete('/:id', (req, res) => {
     const actId = parseInt(req.params.id);
     const actressToDestroy = Actress.findById(actId);
     actressToDestroy.destroy();
     res.status(204).send();
 })
+*/
 
 module.exports = router;

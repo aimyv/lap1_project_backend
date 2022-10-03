@@ -29,7 +29,7 @@ class Entry {
 
     static create(entry) {
         const newEntryId = data.length + 1;
-        const newEntry = new entry({ postId: newEntryId, ...entry});
+        const newEntry = new Entry({ postId: newEntryId, ...entry});
         data.push(newEntry);
         return newEntry;
     }
