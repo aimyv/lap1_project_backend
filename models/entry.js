@@ -45,27 +45,37 @@ class Entry {
 
     update(id, key, value){
         if(key === "comments"){
-            // this.comments.push(value)
             entryData[id-1].comments.push(value);
             var newData = JSON.stringify(entryData);
             fs.writeFile('data.json', newData, err => {
                 if(err) throw err;
-                
-                console.log("New data added");
+                console.log("New comment added");
             }); 
         } 
-        // if(key === "e1"){
-        //     this.e1 += value;
-        //     return this.e1;
-        // } 
-        // if(key === "e2" && value === "inc"){
-        //     this.e2++;
-        //     return this.e2;
-        // } 
-        // if(key === "e3" && value === "inc"){
-        //     this.e3++;
-        //     return this.e3;
-        // } 
+        if(key === "e1" && value === "inc"){
+            entryData[id-1].e1++;
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                console.log("e1 incremented");
+            }); 
+        } 
+        if(key === "e2" && value === "inc"){
+            entryData[id-1].e2++;
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                console.log("e2 incremented");
+            });
+        } 
+        if(key === "e3" && value === "inc"){
+            entryData[id-1].e3++;
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                console.log("e3 incremented");
+            });
+        } 
         // if(key === "e1" && value === "dec" && this.e1 > 0){
         //     this.e1--;
         // } 
