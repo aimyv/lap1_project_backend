@@ -76,15 +76,30 @@ class Entry {
                 console.log("e3 incremented");
             });
         } 
-        // if(key === "e1" && value === "dec" && this.e1 > 0){
-        //     this.e1--;
-        // } 
-        // if(key === "e2" && value === "dec" && this.e2 > 0){
-        //     this.e2--;
-        // } 
-        // if(key === "e3" && value === "dec" && this.e3 > 0){
-        //     this.e1--;
-        // } 
+        if(key === "e1" && value === "dec" && this.e1 > 0){
+            entryData[id-1].e1--;
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                console.log("e1 decremented");
+            }); 
+        } 
+        if(key === "e2" && value === "dec" && this.e2 > 0){
+            entryData[id-1].e2--;
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                console.log("e2 decremented");
+            }); 
+        } 
+        if(key === "e3" && value === "dec" && this.e3 > 0){
+            entryData[id-1].e3--;
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                console.log("e3 decremented");
+            }); 
+        } 
     }
 
     destroy() {
