@@ -10,6 +10,6 @@ server.get('/', (req, res) => {
     res.send('Welcome to the Server!')
 })
 
-server.use('/entry', entryRoutes)
+server.use('/entries', entryRoutes)
 
 module.exports = server;
