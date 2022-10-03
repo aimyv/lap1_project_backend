@@ -34,6 +34,12 @@ class Entry {
         return newEntry;
     }
 
+    update(key, value){
+        if(key === "comments"){
+            this.comments.push(value)
+        }
+    }
+
     destroy() {
         const entry = data.filter((entry) => entry.postId === this.postId)[0];
         data.splice(data.indexOf(entry), 1);

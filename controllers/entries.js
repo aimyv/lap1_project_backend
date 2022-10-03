@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    console.log(req);
-    console.log(req.params.id);
+    // console.log(req);
+    // console.log(req.params.id);
     try {
         const entryId = parseInt(req.params.id);
         const selectedEntry = Entry.findById(entryId)
@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
         }
         res.send(selectedEntry);
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         res.status(404).send({ message: err.message })
     }
 })
@@ -31,9 +31,20 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    const data = req.body;
-    const newEntry = Entry.create(data);
-    res.status(201).send(newEntry);
+    
+    const entryId = parseInt(req.params.id);
+    
+    const selectedEntry = Entry.findById(entryId)
+
+    if(req.body.comment)
+        selectedEntry.update("comments", req.body.comment)
+    
+    if(req.body.react)
+        selectedEntry.update("reactions", req.body.react)
+
+    //const data = req.body;
+    //const newEntry = Entry.create(data);
+    res.status(201).send(selectedEntry);
 })
 /*
 router.delete('/:id', (req, res) => {
