@@ -17,4 +17,8 @@ describe('API server', () => {
         console.log('Gracefully stopping test server');
         api.close(done);
     })
+
+    test('server starts up', (done) => {
+        request(api).get('/').expect(200, done)
+    })
 })
