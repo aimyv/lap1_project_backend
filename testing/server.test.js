@@ -21,4 +21,18 @@ describe('API server', () => {
     test('server starts up', (done) => {
         request(api).get('/').expect(200, done)
     })
+
+    test('get post entry by id', (done) => {
+        request(api).get('/entry/2').expect(200).expect({
+            "postId": 2,
+            "author": "Peter",
+            "title": "Second Title",
+            "content": "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing indu",
+            "comments": ["comment 1", "comment 2"],
+            "gifUrl": "https://media.giphy.com/media/3o7H5jZq2TmpnRBdOE/giphy.gif",
+            "e1": 2,
+            "e2": 0,
+            "e3": 1,    
+        }, done)
+    })
 })
