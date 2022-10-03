@@ -27,6 +27,18 @@ class Entry {
         return entry;
     }
 
+    static create(entry) {
+        const newEntryId = data.length + 1;
+        const newEntry = new entry({ postId: newEntryId, ...entry});
+        data.push(newEntry);
+        return newEntry;
+    }
+
+    destroy() {
+        const entry = data.filter((entry) => entry.postId === this.postId)[0];
+        data.splice(data.indexOf(entry), 1);
+    }
+
 }
 
 module.exports = Entry;
