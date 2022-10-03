@@ -39,8 +39,8 @@ router.put('/:id', (req, res) => {
     if(req.body.comment)
         selectedEntry.update("comments", req.body.comment)
     
-    if(req.body.react)
-        selectedEntry.update("reactions", req.body.react)
+    // if(req.body.react)
+    //     selectedEntry.update("reactions", req.body.react)
 
     //const data = req.body;
     //const newEntry = Entry.create(data);
