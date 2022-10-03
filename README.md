@@ -1,5 +1,7 @@
 # Server
 
+# Installation
+
 - Clone or download this repo
 - Open your terminal
 - Install the node modules with `npm install`
