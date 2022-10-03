@@ -31,31 +31,27 @@ router.post('/', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    
+
     const entryId = parseInt(req.params.id);
-    
+
     const selectedEntry = Entry.findById(entryId)
 
-    if(req.body.comment) {
+    if (req.body.comment) {
         selectedEntry.update(entryId, "comments", req.body.comment)
-    } 
-    if(req.body.e1) {
+    }
+    if (req.body.e1) {
         selectedEntry.update(entryId, "e1", req.body.e1)
-    } 
-    if(req.body.e2) {
+    }
+    if (req.body.e2) {
         selectedEntry.update(entryId, "e2", req.body.e2)
-    } 
-    if(req.body.e3) {
+    }
+    if (req.body.e3) {
         selectedEntry.update(entryId, "e3", req.body.e3)
     }
-    
-    // if(req.body.react)
-    //     selectedEntry.update("reactions", req.body.react)
 
-    //const data = req.body;
-    //const newEntry = Entry.create(data);
-    res.status(201).send(selectedEntry);
+    res.status(204).send(selectedEntry);
 })
+
 /*
 router.delete('/:id', (req, res) => {
     const actId = parseInt(req.params.id);
