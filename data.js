@@ -1,4 +1,4 @@
-[{
+const data = [{
     "postId": 1,
     "author": "John",
     "title": "First Title",
@@ -34,3 +34,5 @@
     "e3": 1,    
 },
 ]
+
+module.exports = data;
