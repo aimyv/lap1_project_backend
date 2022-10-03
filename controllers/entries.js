@@ -37,11 +37,11 @@ router.put('/:id', (req, res) => {
     const selectedEntry = Entry.findById(entryId)
 
     if(req.body.comment) {
-        selectedEntry.update("comments", req.body.comment)
+        selectedEntry.update(entryId, "comments", req.body.comment)
     } 
-    if(req.body.e1) {
-        selectedEntry.update("e1", req.body.e1)
-    } 
+    // if(req.body.e1) {
+    //     selectedEntry.update("e1", req.body.e1)
+    // } 
     // if(req.body.e2) {
     //     selectedEntry.update("e2", req.body.e2)
     // } 

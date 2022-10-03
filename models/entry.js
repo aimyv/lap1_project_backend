@@ -43,14 +43,21 @@ class Entry {
         }); 
     }
 
-    update(key, value){
+    update(id, key, value){
         if(key === "comments"){
-            this.comments.push(value)
+            // this.comments.push(value)
+            entryData[id-1].comments.push(value);
+            var newData = JSON.stringify(entryData);
+            fs.writeFile('data.json', newData, err => {
+                if(err) throw err;
+                
+                console.log("New data added");
+            }); 
         } 
-        if(key === "e1"){
-            this.e1 += value;
-            return this.e1;
-        } 
+        // if(key === "e1"){
+        //     this.e1 += value;
+        //     return this.e1;
+        // } 
         // if(key === "e2" && value === "inc"){
         //     this.e2++;
         //     return this.e2;
