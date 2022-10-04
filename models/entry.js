@@ -1,7 +1,13 @@
 // const data = require('../data.json');
 const fs = require("fs");
 
-var edata = fs.readFileSync('./data.json');
+fs.readFile('./data.json', 'utf8', (err, jsonString) => {
+    if (err) {
+        console.log("File read failed:", err);
+        return;
+    }
+    console.log("File data:", jsonString);
+})
 var entryData = JSON.parse(edata);
 
 class Entry {
