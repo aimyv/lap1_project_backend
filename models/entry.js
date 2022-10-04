@@ -1,4 +1,4 @@
-const data = require('../data.json');
+// const data = require('../data.json');
 const fs = require("fs");
 
 var edata = fs.readFileSync('./data.json');
@@ -18,21 +18,21 @@ class Entry {
     }
 
     static get all() {
-        const entries = data.map((entry) => new Entry(entry));
+        const entries = entryData.map((entry) => new Entry(entry));
         return entries;
     }
 
     static findById(postId) {
-        const entryData = data.filter((entry) => entry.postId == postId)[0];
-        if (!entryData){
+        const entry = entryData.filter((entry) => entry.postId == postId)[0];
+        if (!entry){
             return;
         }
-        const entry = new Entry(entryData);
-        return entry;
+        // const entry = ;
+        return new Entry(entry);
     }
 
     static create(entry) {
-        const newEntryId = data.length + 1;
+        const newEntryId = entryData.length + 1;
         const newEntry = new Entry({ postId: newEntryId, ...entry});
         entryData.push(newEntry);
         var newData = JSON.stringify(entryData);
