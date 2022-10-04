@@ -43,68 +43,28 @@ class Entry {
         }); 
     }
 
-    update(id, key, value){
-        if(key === "comments"){
-            entryData[id-1].comments.push(value);
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("New comment added");
-            }); 
-        } 
-        if(key === "e1" && value === "inc"){
-            entryData[id-1].e1++;
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("e1 incremented");
-            }); 
-        } 
-        if(key === "e2" && value === "inc"){
-            entryData[id-1].e2++;
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("e2 incremented");
-            });
-        } 
-        if(key === "e3" && value === "inc"){
-            entryData[id-1].e3++;
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("e3 incremented");
-            });
-        } 
-        if(key === "e1" && value === "dec" && this.e1 > 0){
-            entryData[id-1].e1--;
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("e1 decremented");
-            }); 
-        } 
-        if(key === "e2" && value === "dec" && this.e2 > 0){
-            entryData[id-1].e2--;
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("e2 decremented");
-            }); 
-        } 
-        if(key === "e3" && value === "dec" && this.e3 > 0){
-            entryData[id-1].e3--;
-            var newData = JSON.stringify(entryData);
-            fs.writeFile('data.json', newData, err => {
-                if(err) throw err;
-                console.log("e3 decremented");
-            }); 
-        } 
-    }
+    update(id, key, value) {
+        if (key === "comments") {
+            entryData[id - 1].comments.push(value);
+        }
 
-    destroy() {
-        const entry = data.filter((entry) => entry.postId === this.postId)[0];
-        data.splice(data.indexOf(entry), 1);
+        if ((key === "e1" || key === "e2" || key === "e3")
+            && value === "inc") {
+            entryData[id - 1][key]++;
+        }
+
+        if ((key === "e1" || key === "e2" || key === "e3")
+            && value === "dec"
+            && entryData[id - 1][key] > 0) {
+            entryData[id - 1][key]--;
+        }
+
+        const newData = JSON.stringify(entryData);
+        
+        fs.writeFile('data.json', newData, err => {
+            if (err) throw err;
+            console.log("Entry data updated");
+        });
     }
 
 }
