@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     const allEntries = Entry.all
+    // res.send(allEntries)
     res.send(allEntries)
 })
 
@@ -17,6 +18,7 @@ router.get('/:id', (req, res) => {
         if (!selectedEntry) {
             throw new Error('This entry does not exist!')
         }
+        // res.send(selectedEntry);
         res.send(selectedEntry);
     } catch (err) {
         // console.log(err);
@@ -27,6 +29,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const data = req.body;
     const newEntry = Entry.create(data);
+    // res.status(201).send(newEntry);
     res.status(201).send(newEntry);
 })
 
