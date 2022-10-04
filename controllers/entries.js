@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     const allEntries = Entry.all
     // res.send(allEntries)
-    res.json(allEntries)
+    res.send(allEntries)
 })
 
 router.get('/:id', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
             throw new Error('This entry does not exist!')
         }
         // res.send(selectedEntry);
-        res.json(selectedEntry);
+        res.send(selectedEntry);
     } catch (err) {
         // console.log(err);
         res.status(404).send({ message: err.message })
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     const data = req.body;
     const newEntry = Entry.create(data);
     // res.status(201).send(newEntry);
-    res.status(201).json(newEntry);
+    res.status(201).send(newEntry);
 })
 
 router.put('/:id', (req, res) => {
