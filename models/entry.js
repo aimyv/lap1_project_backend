@@ -1,14 +1,18 @@
 // const data = require('../data.json');
 const fs = require("fs");
 
+let entryData
+
 fs.readFile('./data.json', 'utf8', (err, jsonString) => {
     if (err) {
         console.log("File read failed:", err);
         return;
     }
-    console.log("File data:", jsonString);
+
+    entryData = JSON.parse(jsonString)
+    // console.log("File data:", entryData);
 })
-var entryData = JSON.parse(edata);
+// var entryData = JSON.parse(edata);
 
 class Entry {
     constructor(data) {
@@ -42,7 +46,7 @@ class Entry {
         const newEntry = new Entry({ postId: newEntryId, ...entry});
         entryData.push(newEntry);
         var newData = JSON.stringify(entryData);
-        fs.writeFile('data.json', newData, err => {
+        fs.writeFile('./data.json', newData, err => {
             if(err) throw err;
             
             console.log("New data added");
@@ -67,7 +71,7 @@ class Entry {
 
         const newData = JSON.stringify(entryData);
         
-        fs.writeFile('data.json', newData, err => {
+        fs.writeFile('./data.json', newData, err => {
             if (err) throw err;
             console.log("Entry data updated");
         });
