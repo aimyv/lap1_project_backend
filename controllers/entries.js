@@ -29,6 +29,26 @@ router.get('/posts/query', (req, res) => {
     });
 });
 
+// pagination with 4 items displayed
+router.get('/posts/query', (req, res) => {
+    const posts = Entry.all
+
+    // console.log("total entries: ", posts.length)
+
+    const pageCount = Math.ceil(posts.length / 4);
+    // console.log("total pages // 4: ", pageCount)
+    let page = parseInt(req.query.p);
+    if (!page) { page = 1; }
+    if (page > pageCount) {
+        page = pageCount
+    }
+    res.status(200).json({
+        "page": page,
+        "pageCount": pageCount,
+        "posts": posts.slice(page * 4 - 4, page * 4)
+    });
+});
+
 router.get('/:id', (req, res) => {
     // console.log(req);
     // console.log(req.params.id);
