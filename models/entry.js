@@ -2,7 +2,8 @@
 const fs = require("fs");
 
 let edata, entryData
-let clickedEmoji = [false, false, false]
+
+let react = [false, false, false]
 
 class Entry {
     constructor(data) {
@@ -52,25 +53,17 @@ class Entry {
             entryData[id - 1].comments.push(value);
         }
 
-        // if ((key === "e1" || key === "e2" || key === "e3")
-        //     && value === "inc") {
-        //     entryData[id - 1][key]++;
-        // }
-
-        if (( (key === "e1" && !clickedEmoji[0]) || (key === "e2" && !clickedEmoji[1]) || (key === "e3" && !clickedEmoji[2]) ) && value === "inc") {
+        if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
+            && value === "inc") {
             entryData[id - 1][key]++;
-            clickedEmoji[parseInt(key[1])-1] = true;
+            react[parseInt(key[1])-1] = true;
         }
 
-        // if ((key === "e1" || key === "e2" || key === "e3")
-        //     && value === "dec"
-        //     && entryData[id - 1][key] > 0) {
-        //     entryData[id - 1][key]--;
-        // }
-
-        if (( (key === "e1" && clickedEmoji[0]) || (key === "e2" && clickedEmoji[1]) || (key === "e3" && clickedEmoji[2]) ) && value === "dec" && entryData[id - 1][key] > 0) {
+        if (( (key === "e1" && react[0]) || (key === "e2" && react[1]) || (key === "e3" && react[2]) )
+            && value === "dec"
+            && entryData[id - 1][key] > 0) {
             entryData[id - 1][key]--;
-            clickedEmoji[parseInt(key[1])-1] = false;
+            react[parseInt(key[1])-1] = false;
         }
 
         const newData = JSON.stringify(entryData);
