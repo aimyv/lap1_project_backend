@@ -25,6 +25,8 @@ class Entry {
     }
 
     static findById(postId) {
+        edata = fs.readFileSync('./data.json');
+        entryData = JSON.parse(edata);
         const entry = entryData.filter((entry) => entry.postId == postId)[0];
         if (!entry){
             return;
