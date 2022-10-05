@@ -3,7 +3,6 @@ const fs = require("fs");
 let edata, entryData
 
 let react = [false, false, false]
-let commentsToDelete = 0
 
 class Entry {
     constructor(data,) {
@@ -51,7 +50,6 @@ class Entry {
     update(id, key, value) {
         if (key === "comments") {
             entryData[id - 1].comments.push(value);
-            commentsToDelete++;
         }
 
         if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
