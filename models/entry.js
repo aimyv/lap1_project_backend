@@ -1,8 +1,7 @@
-const data = require('../data.json');
+// const data = require('../data.json');
 const fs = require("fs");
 
-var edata = fs.readFileSync('./data.json');
-var entryData = JSON.parse(edata);
+let edata, entryData
 
 class Entry {
     constructor(data) {
@@ -18,17 +17,20 @@ class Entry {
     }
 
     static get all() {
-        const entries = data.map((entry) => new Entry(entry));
+        edata = fs.readFileSync('./data.json');
+        entryData = JSON.parse(edata);
+
+        const entries = entryData.map((entry) => new Entry(entry));
         return entries;
     }
 
     static findById(postId) {
-        const entryData = data.filter((entry) => entry.postId == postId)[0];
-        if (!entryData){
+        const entry = entryData.filter((entry) => entry.postId == postId)[0];
+        if (!entry){
             return;
         }
-        const entry = new Entry(entryData);
-        return entry;
+        // const entry = ;
+        return new Entry(entry);
     }
 
     static create(entry) {
