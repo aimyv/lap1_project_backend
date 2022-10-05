@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => {
         selectedEntry.update(entryId, "comments", req.body.comment)
     }
     if (req.body.del) {
-        selectedEntry.update(entryId, "deleteAllComments", req.body.del)
+        selectedEntry.update(entryId, "deleteComments", req.body.del)
     }
     if (req.body.e1) {
         selectedEntry.update(entryId, "e1", req.body.e1)

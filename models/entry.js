@@ -2,10 +2,8 @@ const fs = require("fs");
 
 let edata, entryData
 
-let react = [false, false, false]
-
 class Entry {
-    constructor(data,) {
+    constructor(data) {
         this.postId = data.postId;
         this.author = data.author;
         this.title = data.title;
@@ -52,21 +50,21 @@ class Entry {
             entryData[id - 1].comments.push(value);
         }
 
-        if (key === "deleteAllComments" && value === 'y') {
+        if (key === "deleteComments" && value === 'last') {
+            entryData[id - 1].comments.pop();
+        } else if (key === "deleteComments" && value === 'all') {
             entryData[id - 1].comments = [];
         }
 
-        if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
+        if ((key === "e1" || key === "e2" || key === "e3" )
             && value === "inc") {
             entryData[id - 1][key]++;
-            react[parseInt(key[1])-1] = true;
         }
 
-        if (( (key === "e1" && react[0]) || (key === "e2" && react[1]) || (key === "e3" && react[2]) )
+        if ((key === "e1" || key === "e2" || key === "e3" )
             && value === "dec"
             && entryData[id - 1][key] > 0) {
             entryData[id - 1][key]--;
-            react[parseInt(key[1])-1] = false;
         }
 
         const newData = JSON.stringify(entryData);
