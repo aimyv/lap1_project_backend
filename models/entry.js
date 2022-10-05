@@ -1,8 +1,7 @@
 // const data = require('../data.json');
 const fs = require("fs");
 
-var edata = fs.readFileSync('./data.json');
-var entryData = JSON.parse(edata);
+let edata, entryData
 
 class Entry {
     constructor(data) {
@@ -18,6 +17,9 @@ class Entry {
     }
 
     static get all() {
+        edata = fs.readFileSync('./data.json');
+        entryData = JSON.parse(edata);
+
         const entries = entryData.map((entry) => new Entry(entry));
         return entries;
     }
