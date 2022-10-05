@@ -35,7 +35,7 @@ class Entry {
 
     static create(entry) {
         const newEntryId = entryData.length + 1;
-        const newEntry = new Entry({ postId: newEntryId, ...entry});
+        const newEntry = new Entry({ postId: newEntryId, comments:[], e1: 0, e2: 0, e3: 0, ...entry});
         entryData.push(newEntry);
         var newData = JSON.stringify(entryData);
         fs.writeFile('./data.json', newData, err => {
@@ -67,6 +67,18 @@ class Entry {
             entryData[id - 1][key]--;
         }
 
+        const newData = JSON.stringify(entryData);
+        
+        fs.writeFile('./data.json', newData, err => {
+            if (err) throw err;
+            console.log("Entry data updated");
+        });
+    }
+
+    deleteComment(num) {
+        const entry = entryData.filter((entry) => entry.postId === this.postId)[0];
+        const com = entry.comments
+        com.splice(com.indexOf(num-1), 1)
         const newData = JSON.stringify(entryData);
         
         fs.writeFile('./data.json', newData, err => {

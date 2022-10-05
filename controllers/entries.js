@@ -50,9 +50,6 @@ router.get('/:id/comments/:cid', (req, res) => {
         if (!selectedEntry) {
             throw new Error('This entry does not exist!')
         }
-        if (!num) {
-            throw new Error('This comment does not exist!')
-        }
         res.send(selectedEntry.comments[num]);
     } catch (err) {
         // console.log(err);
@@ -116,6 +113,14 @@ router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const entryToDestroy = Entry.findById(id);
     entryToDestroy.destroy();
+    res.status(204).send();
+})
+
+router.delete('/:id/comments/:cid', (req, res) => {
+    const id = parseInt(req.params.id);
+    const num = parseInt(req.params.cid) - 1
+    const entryToDestroy = Entry.findById(id);
+    entryToDestroy.deleteComment(num);
     res.status(204).send();
 })
 
