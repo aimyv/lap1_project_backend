@@ -1,5 +1,8 @@
 # Server
 
+## Deployment
+- <a href="https://maulers-server.onrender.com/" target="_blank">Render</a>
+
 ## Installation
 
 - Clone or download this repo.

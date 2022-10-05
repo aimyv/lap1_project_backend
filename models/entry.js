@@ -1,18 +1,9 @@
 // const data = require('../data.json');
 const fs = require("fs");
 
-let entryData
+let edata, entryData
 
-fs.readFile('./data.json', 'utf8', (err, jsonString) => {
-    if (err) {
-        console.log("File read failed:", err);
-        return;
-    }
-
-    entryData = JSON.parse(jsonString)
-    // console.log("File data:", entryData);
-})
-// var entryData = JSON.parse(edata);
+let react = [false, false, false]
 
 class Entry {
     constructor(data) {
@@ -28,16 +19,20 @@ class Entry {
     }
 
     static get all() {
+        edata = fs.readFileSync('./data.json');
+        entryData = JSON.parse(edata);
+
         const entries = entryData.map((entry) => new Entry(entry));
         return entries;
     }
 
     static findById(postId) {
+        edata = fs.readFileSync('./data.json');
+        entryData = JSON.parse(edata);
         const entry = entryData.filter((entry) => entry.postId == postId)[0];
         if (!entry){
             return;
         }
-        // const entry = ;
         return new Entry(entry);
     }
 
@@ -58,15 +53,17 @@ class Entry {
             entryData[id - 1].comments.push(value);
         }
 
-        if ((key === "e1" || key === "e2" || key === "e3")
+        if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
             && value === "inc") {
             entryData[id - 1][key]++;
+            react[parseInt(key[1])-1] = true;
         }
 
-        if ((key === "e1" || key === "e2" || key === "e3")
+        if (( (key === "e1" && react[0]) || (key === "e2" && react[1]) || (key === "e3" && react[2]) )
             && value === "dec"
             && entryData[id - 1][key] > 0) {
             entryData[id - 1][key]--;
+            react[parseInt(key[1])-1] = false;
         }
 
         const newData = JSON.stringify(entryData);
