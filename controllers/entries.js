@@ -73,20 +73,17 @@ router.put('/:id', (req, res) => {
         selectedEntry.update(entryId, "e3", req.body.e3)
     }
 
-    // if(req.body.react)
-    //     selectedEntry.update("reactions", req.body.react)
-
-    //const data = req.body;
-    //const newEntry = Entry.create(data);
     res.status(201).send(selectedEntry);
 })
-/*
+
+
+
 router.delete('/:id', (req, res) => {
-    const actId = parseInt(req.params.id);
-    const actressToDestroy = Actress.findById(actId);
-    actressToDestroy.destroy();
+    const id = parseInt(req.params.id);
+    const entryToDestroy = Entry.findById(id);
+    entryToDestroy.destroy();
     res.status(204).send();
 })
-*/
+
 
 module.exports = router;

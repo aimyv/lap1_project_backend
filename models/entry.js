@@ -1,12 +1,12 @@
-// const data = require('../data.json');
 const fs = require("fs");
 
 let edata, entryData
 
 let react = [false, false, false]
+let commentsToDelete = 0
 
 class Entry {
-    constructor(data) {
+    constructor(data,) {
         this.postId = data.postId;
         this.author = data.author;
         this.title = data.title;
@@ -51,6 +51,7 @@ class Entry {
     update(id, key, value) {
         if (key === "comments") {
             entryData[id - 1].comments.push(value);
+            commentsToDelete++;
         }
 
         if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
@@ -66,6 +67,17 @@ class Entry {
             react[parseInt(key[1])-1] = false;
         }
 
+        const newData = JSON.stringify(entryData);
+        
+        fs.writeFile('./data.json', newData, err => {
+            if (err) throw err;
+            console.log("Entry data updated");
+        });
+    }
+
+    destroy() {
+        const entry = entryData.filter((entry) => entry.postId === this.postId)[0];
+        entryData.splice(entryData.indexOf(entry), 1)
         const newData = JSON.stringify(entryData);
         
         fs.writeFile('./data.json', newData, err => {
