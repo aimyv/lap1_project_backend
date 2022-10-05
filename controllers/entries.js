@@ -24,6 +24,42 @@ router.get('/:id', (req, res) => {
     }
 })
 
+router.get('/:id/comments', (req, res) => {
+    // console.log(req);
+    // console.log(req.params.id);
+    try {
+        const entryId = parseInt(req.params.id);
+        const selectedEntry = Entry.findById(entryId)
+        if (!selectedEntry) {
+            throw new Error('This entry does not exist!')
+        }
+        res.send(selectedEntry.comments);
+    } catch (err) {
+        // console.log(err);
+        res.status(404).send({ message: err.message })
+    }
+})
+
+router.get('/:id/comments/:cid', (req, res) => {
+    // console.log(req);
+    // console.log(req.params.id);
+    try {
+        const entryId = parseInt(req.params.id)
+        const num = parseInt(req.params.cid) - 1
+        const selectedEntry = Entry.findById(entryId)
+        if (!selectedEntry) {
+            throw new Error('This entry does not exist!')
+        }
+        if (!num) {
+            throw new Error('This comment does not exist!')
+        }
+        res.send(selectedEntry.comments[num]);
+    } catch (err) {
+        // console.log(err);
+        res.status(404).send({ message: err.message })
+    }
+})
+
 // pagination with 4 items displayed
 // rootURL + entries/posts/query?p=[[page number]]
 router.get('/posts/query', (req, res) => {
