@@ -8,8 +8,8 @@ class Entry {
         this.author = data.author;
         this.title = data.title;
         this.content = data.content;
-        this.comments = data.comments;
         this.gifUrl = data.gifUrl;
+        this.comments = data.comments;
         this.e1 = data.e1;
         this.e2 = data.e2;
         this.e3 = data.e3;
@@ -67,18 +67,6 @@ class Entry {
             entryData[id - 1][key]--;
         }
 
-        const newData = JSON.stringify(entryData);
-        
-        fs.writeFile('./data.json', newData, err => {
-            if (err) throw err;
-            console.log("Entry data updated");
-        });
-    }
-
-    deleteComment(num) {
-        const entry = entryData.filter((entry) => entry.postId === this.postId)[0];
-        const com = entry.comments
-        com.splice(com.indexOf(num-1), 1)
         const newData = JSON.stringify(entryData);
         
         fs.writeFile('./data.json', newData, err => {

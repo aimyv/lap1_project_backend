@@ -116,13 +116,5 @@ router.delete('/:id', (req, res) => {
     res.status(204).send();
 })
 
-router.delete('/:id/comments/:cid', (req, res) => {
-    const id = parseInt(req.params.id);
-    const num = parseInt(req.params.cid) - 1
-    const entryToDestroy = Entry.findById(id);
-    entryToDestroy.deleteComment(num);
-    res.status(204).send();
-})
-
 
 module.exports = router;
