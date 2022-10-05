@@ -32,7 +32,7 @@ class Entry {
     }
 
     static create(entry) {
-        const newEntryId = data.length + 1;
+        const newEntryId = entryData.length + 1;
         const newEntry = new Entry({ postId: newEntryId, ...entry});
         entryData.push(newEntry);
         var newData = JSON.stringify(entryData);
