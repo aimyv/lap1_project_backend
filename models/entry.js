@@ -53,13 +53,13 @@ class Entry {
             entryData[id - 1].comments.push(value);
         }
 
-        if (( (key === "e1" && react[0]) || (key === "e2" && react[1]) || (key === "e3" && react[2]) )
+        if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
             && value === "inc") {
             entryData[id - 1][key]++;
             react[parseInt(key[1])-1] = true;
         }
 
-        if (( (key === "e1" && !react[0]) || (key === "e2" && !react[1]) || (key === "e3" && !react[2]) )
+        if (( (key === "e1" && react[0]) || (key === "e2" && react[1]) || (key === "e3" && react[2]) )
             && value === "dec"
             && entryData[id - 1][key] > 0) {
             entryData[id - 1][key]--;
