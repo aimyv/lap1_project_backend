@@ -2,7 +2,6 @@
 
 ## Deployment
 - <a href="https://maulers-server.onrender.com/" target="_blank">Render</a>
-- <a href="https://maulers-server.herokuapp.com/" target="_blank">Heroku</a>
 
 ## Installation
 
