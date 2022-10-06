@@ -4,6 +4,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
+    console.log("location: ", req.headers.host)
     const allEntries = Entry.all
     res.send(allEntries)
 })
