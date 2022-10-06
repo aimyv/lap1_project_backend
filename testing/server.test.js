@@ -64,11 +64,16 @@ describe('API server', () => {
         })
     }
 
+    test('get all comments for a specific entry', (done) => {
+        request(api).get('/entries/3/comments').expect(200, done)
+    })
+
     test('delete all comments', (done) => {
         request(api).put('/entries/3').send({
             "del": "all"
         }).expect(201, done)
     })
+
 
     test('responds to delete /entries/:id with status 204', async () => {
         await request(api).delete('/entries/5').expect(204);
