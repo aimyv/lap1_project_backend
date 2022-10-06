@@ -35,7 +35,7 @@ class Entry {
 
     static create(entry) {
         const newEntryId = entryData.length + 1;
-        const newEntry = new Entry({ postId: newEntryId, comments:[], e1: 0, e2: 0, e3: 0, ...entry});
+        const newEntry = new Entry({ postId: newEntryId, author:'anonymous', title:'', content:'', gifUrl:'', comments:[], e1: 0, e2: 0, e3: 0, ...entry});
         entryData.push(newEntry);
         var newData = JSON.stringify(entryData);
         fs.writeFile('./data.json', newData, err => {
