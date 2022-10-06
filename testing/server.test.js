@@ -36,12 +36,16 @@ describe('API server', () => {
         request(api).get('/entries/-1').expect({message: 'This entry does not exist!'}, done)
     })
 
+    test('get error for post entry with out-of-bounds id', (done) => {
+        request(api).get('/entries/5').expect({message: 'This entry does not exist!'}, done)
+    })
+
     test('post new entry', (done) => {
         request(api).post('/entries').send({
             "author": "Maulers",
             "title": "Test Title",
             "content": "Test Content"
-        }).expect(201, done)//).expect(data[data.length - 1], done). // Check id
+        }).expect(201, done);
     })
 
     test('update existing entry', (done) => {
@@ -50,10 +54,10 @@ describe('API server', () => {
         }).expect(201, done) 
     })
 
-    test('delete last comment', (done) => {
+    test('delete last comment', async () => {
         request(api).put('/entries/2').send({
             "del": "last"
-        }).expect(201, done) // Check comments length and last comment
+        }).expect(201);
     })
 
     for(let i = 0; i < 3; i++) {
@@ -73,7 +77,6 @@ describe('API server', () => {
             "del": "all"
         }).expect(201, done)
     })
-
 
     test('responds to delete /entries/:id with status 204', async () => {
         await request(api).delete('/entries/5').expect(204);
