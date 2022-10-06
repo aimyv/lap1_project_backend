@@ -50,6 +50,12 @@ describe('API server', () => {
         }).expect(201, done) // Check comments length and last comment
     })
 
+    test('delete last comment', (done) => {
+        request(api).put('/entries/2').send({
+            "del": "last"
+        }).expect(201, done) // Check comments length and last comment
+    })
+
     test('responds to delete /entries/:id with status 204', async () => {
         await request(api).delete('/entries/5').expect(204);
         const updatedEntries = await request(api).get('/entries');
