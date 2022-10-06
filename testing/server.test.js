@@ -38,9 +38,9 @@ describe('API server', () => {
 
     test('post new entry', (done) => {
         request(api).post('/entries').send({
-            "author": "John Doe",
+            "author": "Maulers",
             "title": "Test Title",
-            "content": "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing indu"
+            "content": "Test Content"
         }).expect(201, done)//).expect(data[data.length - 1], done). // Check id
     })
 
@@ -48,5 +48,11 @@ describe('API server', () => {
         request(api).put('/entries/2').send({
             "comment": "This is a test comment"
         }).expect(201, done) // Check comments length and last comment
+    })
+
+    test('responds to delete /entries/:id with status 204', async () => {
+        await request(api).delete('/entries/5').expect(204);
+        const updatedEntries = await request(api).get('/entries');
+        expect(updatedEntries.body.length).toBe(4);
     })
 })
