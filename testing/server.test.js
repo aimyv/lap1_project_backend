@@ -28,7 +28,7 @@ describe('API server', () => {
         request(api).get('/entries').expect(200).expect(data, done)
     })
 
-    test('get post entry by id', (done) => {
+    test('get entry by id', (done) => {
         request(api).get('/entries/2').expect(200).expect(data[1], done)
     })
 
@@ -47,13 +47,27 @@ describe('API server', () => {
     test('update existing entry', (done) => {
         request(api).put('/entries/2').send({
             "comment": "This is a test comment"
-        }).expect(201, done) // Check comments length and last comment
+        }).expect(201, done) 
     })
 
     test('delete last comment', (done) => {
         request(api).put('/entries/2').send({
             "del": "last"
         }).expect(201, done) // Check comments length and last comment
+    })
+
+    for(let i = 0; i < 3; i++) {
+        test('add a comment', (done) => {
+            request(api).put('/entries/3').send({
+                "comment": "I'm going to delete this soon"
+            }).expect(201, done)
+        })
+    }
+
+    test('delete all comments', (done) => {
+        request(api).put('/entries/3').send({
+            "del": "all"
+        }).expect(201, done)
     })
 
     test('responds to delete /entries/:id with status 204', async () => {

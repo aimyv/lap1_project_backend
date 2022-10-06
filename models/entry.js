@@ -92,7 +92,7 @@ class Entry {
         
         fs.writeFile('./data.json', newData, err => {
             if (err) throw err;
-            console.log("Entry data updated");
+            // console.log("Entry data updated");
         });
     }
 
