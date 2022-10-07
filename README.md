@@ -13,7 +13,3 @@
 
 - Run `npm run dev` to launch the server.
 - Go to <a href="http://localhost:3000/" target="_blank">local host</a> to access the backend.
-
-## Bugs
-
-- Can increment and decrement emojis more than once (should only be able to increment and decrement once).
