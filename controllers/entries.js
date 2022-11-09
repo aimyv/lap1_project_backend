@@ -106,7 +106,7 @@ router.put('/:id', (req, res) => {
         selectedEntry.update(entryId, "e3", req.body.e3)
     }
 
-    res.status(201).send(selectedEntry);
+    res.status(202).send(selectedEntry);
 })
 
 router.delete('/:id', (req, res) => {
